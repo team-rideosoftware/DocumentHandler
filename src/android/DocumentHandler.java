@@ -27,16 +27,17 @@ public class DocumentHandler extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args,
-												 final CallbackContext callbackContext) throws JSONException {
+						   final CallbackContext callbackContext) throws JSONException {
 		if (HANDLE_DOCUMENT_ACTION.equals(action)) {
 
 			// parse arguments
 			final JSONObject arg_object = args.getJSONObject(0);
 			final String url = arg_object.getString("url");
+			final String mimeArgs = arg_object.getString("mime");
 			System.out.println("Found: " + url);
 
 			// start async download task
-			new FileDownloaderAsyncTask(callbackContext, url).execute();
+			new FileDownloaderAsyncTask(callbackContext, url, mimeArgs).execute();
 
 			return true;
 		}
@@ -126,12 +127,14 @@ public class DocumentHandler extends CordovaPlugin {
 
 		private final CallbackContext callbackContext;
 		private final String url;
+		private final String mimeArgs;
 
 		public FileDownloaderAsyncTask(CallbackContext callbackContext,
-																	 String url) {
+									   String url, String mimeArgs) {
 			super();
 			this.callbackContext = callbackContext;
 			this.url = url;
+			this.mimeArgs = mimeArgs;
 		}
 
 		@Override
@@ -149,7 +152,12 @@ public class DocumentHandler extends CordovaPlugin {
 			Context context = cordova.getActivity().getApplicationContext();
 
 			// get mime type of file data
+
 			String mimeType = getMimeType(url);
+			if (mimeArgs != null) {
+				mimeType = mimeArgs;
+			}
+
 			if (mimeType == null) {
 				callbackContext.error(ERROR_UNKNOWN_ERROR);
 				return;

@@ -1,3 +1,9 @@
 *.swp
 .DS_Store
 
+# PhpStorm
+
+.idea/
+*.iml
+*.ipr
+*.iws
