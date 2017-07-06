@@ -154,7 +154,8 @@ public class DocumentHandler extends CordovaPlugin {
 			// get mime type of file data
 
 			String mimeType = getMimeType(url);
-			if (mimeArgs != null) {
+
+			if (!mimeArgs.equals("null")) {
 				mimeType = mimeArgs;
 			}
 

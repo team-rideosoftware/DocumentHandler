@@ -3,6 +3,7 @@ var myFunc = function (
 	failureHandler,
 	url,
 	mime) {
+	mime = typeof mime !== 'undefined' ? mime : null;
 	cordova.exec(
 		successHandler,
 		failureHandler,
