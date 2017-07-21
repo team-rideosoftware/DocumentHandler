@@ -1,0 +1,23 @@
+{
+  "name": "documenthandler",
+  "version": "0.2.2",
+  "description": "A phonegap plugin to handle documents (f.e. PDFs) given by URL.",
+  "cordova": {
+    "id": "ch.ti8m.documenthandler",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/team-rideosoftware/DocumentHandler.git"
+  },
+  "keywords": [
+    "cordova",
+    "Documents",
+    "PDF"
+  ],
+  "author": "Rideo Software",
+  "license": "MIT"
+}
